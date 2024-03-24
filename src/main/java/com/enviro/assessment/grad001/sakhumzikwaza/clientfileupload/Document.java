@@ -2,7 +2,6 @@ package com.enviro.assessment.grad001.sakhumzikwaza.clientfileupload;
 
 import jakarta.persistence.*;
 
-import javax.annotation.processing.Generated;
 import java.util.Date;
 
 @Entity
@@ -13,12 +12,20 @@ public class Document {
     private  Long id;
     @Column(length = 512, nullable = false, unique = true)
     private String name;
-
     private Long size;
     @Column(name = "upload_time")
     private Date uploadTime;
     private byte[] content;
 
+    public Document(Long id, String name, long size) {
+        this.id = id;
+        this.name = name;
+        this.size = size;
+    }
+
+    public Document(){
+
+    }
     public Long getId() {
         return id;
     }
