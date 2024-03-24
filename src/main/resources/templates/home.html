@@ -13,6 +13,23 @@
     <div class="text-success">
         <h3>[[${message}]]</h3>
     </div>
+    <div class="row border rounded">
+        <th:block th:each="doc : ${ListDocs}">
+            <div class="col">
+                <div>
+                    <img th:src="@{/images/contact.png}" width="50" />
+                </div>
+
+                <div>
+                    <a th:href="@{'/download?id=' + ${doc.id}">[[${doc.name}]]</a>
+                </div>
+                <div>
+                    ([[${#numbers.formatInteger(doc.size, 4 'COMMA')}]] bytes)
+                </div>
+            </div>
+        </th:block>
+
+    </div>
 
     <form th:action="@{/upload}" method="post" enctype="multipart/form-data"
         style="max-width: 600px; margin: 0 auto"
