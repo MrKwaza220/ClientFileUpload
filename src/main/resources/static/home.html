@@ -14,7 +14,7 @@
         <h3>[[${message}]]</h3>
     </div>
     <div class="row border rounded">
-        <div th:each="doc : ${listDocs}">
+        <th:block th:each="doc : ${listDocs}">
             <div class="col">
                 <div>
                     <img th:src="@{/images/contact.png}" width="50" />
@@ -27,7 +27,7 @@
                     ([[${#numbers.formatInteger(doc.size, 4 'COMMA')}]] bytes)
                 </div>
             </div>
-        </div>
+        </th:block>
 
     </div>
 
