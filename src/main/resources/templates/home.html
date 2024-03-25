@@ -6,44 +6,47 @@
     <link re="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
 </head>
 <body>
-    <div class="container-fluid text-center">
-        <h1>File Upload</h1>
-    </div>
+<div class="container-fluid text-center">
+    <h1>File Upload</h1>
+</div>
 
-    <div class="text-success">
-        <h3>[[${message}]]</h3>
-    </div>
-    <div class="row border rounded">
-        <div th:each="doc : ${listDocs}">
-            <div class="col">
-                <div>
-                    <img th:src="@{/images/contact.png}" width="50" />
-                </div>
+<div class="text-success">
+    <!-- Display success message if available -->
+    <h3 th:text="${message}"></h3>
+</div>
+<div class="row border rounded">
+    <!-- Iterate over the list of documents and display each one -->
+    <div th:each="doc : ${listDocs}">
+        <div class="col">
+            <div>
+                <img th:src="@{/images/contact.png}" width="50" />
+            </div>
 
-                <div>
-                    <a th:href="@{'/download?id=' + ${doc.id}">[[${doc.name}]]</a>
-                </div>
-                <div>
-                    ([[${#numbers.formatInteger(doc.size, 4 'COMMA')}]] bytes)
-                </div>
+            <div>
+                <!-- Link to download the document -->
+                <a th:href="@{'/download?id=' + ${doc.id}}" th:text="${doc.name}"></a>
+            </div>
+            <div>
+                <!-- Display the size of the document in bytes -->
+                ([[${#numbers.formatInteger(doc.size, 4 'COMMA')}]] bytes)
             </div>
         </div>
-
     </div>
+</div>
 
-    <form th:action="@{/upload}" method="post" enctype="multipart/form-data"
-        style="max-width: 600px; margin: 0 auto"
-        >
-        <div class="border rounded m-3">
-            <h2>Upload Your Files:</h2>
-            <p>
-                <input type ="file" name="document" required />
-            </p>
-
-                <input type="submit" value="Upload" class="btn btn-primary" />
-
-        </div>
-    </form>
+<form th:action="@{/upload}" method="post" enctype="multipart/form-data"
+      style="max-width: 600px; margin: 0 auto"
+>
+    <div class="border rounded m-3">
+        <h2>Upload Your Files:</h2>
+        <p>
+            <!-- Input field to select file for upload -->
+            <input type="file" name="document" required />
+        </p>
+        <!-- Submit button to upload the selected file -->
+        <input type="submit" value="Upload" class="btn btn-primary" />
+    </div>
+</form>
 
 </body>
 </html>
